@@ -1,0 +1,37 @@
+body {
+    font-family: Helvetica, sans-serif;
+}
+
+.content {
+    text-align: center;
+    margin-top: 20px;
+}
+
+form div {
+    margin-left: -150px;
+    line-height: 5rem;
+}
+
+label {
+    display: inline-block;
+    width: 140px;
+    text-align: right;
+    margin-right: 1rem;
+}
+
+input {
+    border-radius: 10px;
+    padding: 6px;
+}
+
+input[type=submit] {
+    background: #66ffff;
+    width: 100px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background: #58dddd;
+    transition: .5s;
+}

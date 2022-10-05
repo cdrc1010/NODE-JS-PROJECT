@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/nav-bar_manage.css">
+    <link rel="stylesheet" href="/stylesheets/doclist.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav-bar">
+            <ul>
+                <a href="chat">
+                    <li>Group Chat</li>
+                </a>
+                <a href="user-list">
+                    <li>Manage Users</li>
+                </a>
+                <a href="#">
+                    <li class="active">Manage Documents</li>
+                </a>
+                <a href="logout">
+                    <li>Logout</li>
+                </a>
+
+            </ul>
+        </div>
+
+        <!-- modal -->
+        <div class="overlay2" id="overlay2" hidden>
+            <div class="confirm-box2">
+                <div onclick="closeConfirmBox2()" class="close2">&#10006;</div>
+                <input type="hidden" id="hiddenUserId">
+                <h4>Confirm File Deletion</h4>
+                <hr>
+                <p><span> <img src="/images/icons8-question-mark-64.png" height="45px"></span> Are you sure?</p>
+                <div class="confirm-btn2">
+                    <button class="deleteBtn">Ok</button>
+                    <button onclick="isConfirm(false)">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <!-- modal -->
+
+        <!-- modal -->
+        <div class="overlay1" id="overlay1" hidden>
+            <div class="confirm-box1">
+                <div onclick="closeConfirmBox1()" class="close1">&#10006;</div>
+                <h4>Edit</h4>
+                <hr><br>
+
+                <div class="input-field">
+                    <label>File Description</label>
+                    <input type="text" placeholder="Sample File" id="updDescription">
+                </div>
+
+
+                <div class="confirm-btn1">
+                    <button class="updateBtn">Save</button>
+                    <button onclick="isConfirm(false)">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+        <!-- modal -->
+
+        <!-- modal -->
+        <div class="overlay" id="overlay" hidden>
+            <div class="confirm-box">
+                <div onclick="closeConfirmBox()" class="close">&#10006;</div>
+                <h4>Upload</h4>
+                <hr><br>
+                <form action="/docslist" enctype="multipart/form-data">
+                    <div class="input-field">
+                        <label>File Description</label>
+                        <input type="text" placeholder="Sample File" name="fileDescription" id="fileDescription">
+                    </div>
+
+                    <div class="input-field">
+                        <label>File Upload</label>
+                        <input type="file" id="myUpload" name="filetoupload">
+                    </div>
+
+                    <div class="confirm-btn">
+                        <button type="submit">Yes</button>
+                    </div>
+                </form>
+                <button class="cancel" onclick="isConfirm()">No</button>
+            </div>
+        </div>
+        <!-- modal -->
+        <h1>My Uploads</h1>
+
+        <div class="content1">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Label</th>
+                        <th>File Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <%uploadList.forEach(uploads=> {%>
+                        <%let thisId=user._id%>
+                            <%let thatId=uploads.uploaderID%>
+                                <% if(thisId.equals(thatId)) { %>
+                                    <tr>
+                                        <td>
+                                            <%= uploads.fileDescription%>
+                                        </td>
+                                        <td>
+                                            <span class="downloadableLink"><a
+                                                    href="docslist/download/<%= uploads._id%>">
+                                                    <%= uploads.fileName %>
+                                                </a></span>
+                                        </td>
+
+                                        <td><button onclick="showEdit(`<%= uploads._id %>`)">Edit
+                                            </button> | <button onclick="showDelete(`<%= uploads._id %>`)">Delete
+                                            </button> | <a href="share/<%=uploads._id  %>"><button>Share</button></a>
+                                        </td>
+                                    </tr>
+                                    <%}%>
+                                        <%})%>
+
+
+                </tbody>
+            </table>
+        </div>
+
+        <h1>Shared Uploads</h1>
+        <div class="content2">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Label</th>
+                        <th>File Name</th>
+                        <th>Shared By</th>
+                    </tr>
+                </thead>
+
+                    <tbody id="shared">
+                        <%let myName = user.name%>
+
+                        <%uploadList.forEach(uploads=> {%>
+                            <%let sharedTo=uploads.sharedTo%>
+                                <%sharedTo.forEach(share=>{%>
+                                    <%let tableName = share.receiverName%>
+                                    <%if(tableName.match(myName)) {%>
+                                        <tr>
+                                            <td><%=share.fileDescription%></td>
+                                            <td><span class="downloadableLink"><a
+                                                href="docslist/download/<%= uploads._id%>">
+                                                <%= share.fileName %>
+                                            </a></span></td>
+                                            <td><%=share.uploaderEmail%></td>
+                                        </tr>
+                                    <%}%>
+                                        
+                                    
+                                <%})%>
+                        <%})%>
+                    </tbody>
+            </table>
+        </div>
+
+        <br>
+        <button class="upload" onclick="showConfirmBox()">+ Add Upload</button>
+
+    </div>
+
+
+    <script src="/javascripts/docslist.js"></script>
+
+
+</body>
+
+</html>

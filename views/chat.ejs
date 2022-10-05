@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/nav-bar_manage.css">
+    <link rel="stylesheet" href="/stylesheets/chat.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav-bar">
+            <ul>
+                <a href="chat">
+                    <li class="active">Group Chat</li>
+                </a>
+                <a href="user-list">
+                    <li>Manage Users</li>
+                </a>
+                <a href="docslist">
+                    <li>Manage Documents</li>
+                </a>
+                <a href="logout">
+                    <li>Logout</li>
+                </a>
+
+            </ul>
+        </div>
+
+        <div class="upper-header">
+            <ul>
+                <li>Group Chat</li>
+                <li>X</li>
+            </ul>
+        </div>
+
+        <div class="messages">
+            <%chatList.forEach(msg=> {%>
+                <p><%= msg.date%> <b><%= msg.name%></b>: <%=msg.message%></p>
+                <%})%>
+        </div>
+
+        <div class="user-row">
+            <span id="name"><%=user.name%></span>
+            
+                <input type="text" placeholder="type your message here" id="msgs" name="message">
+                <button type="submit" id="txtSend">Send</button>
+            
+            <button onclick="refresh()">Refresh</button>
+
+        </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    
+        <script src="/javascripts/message.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel='stylesheet' href='/stylesheets/register.css' />
+</head>
+
+<body>
+    <% if(typeof alert !='undefined') {%>
+        <% alert.forEach(function(error) {%>
+            <script>
+                
+                alert(`<%= error.msg%>`);
+            </script>
+            <% })%>
+            <% }%>
+
+  <div class="reg-form">
+    <form id="registerForm" method="post">
+        <h2>Register</h2>
+
+        <div class="fields">
+
+            <div class="input-field">
+                <label for="fullname">Full Name</label>
+                <input type="text" name="name" placeholder="E.g Cedric Gurimbao" id="name">
+            </div>
+            <div class="input-field">
+                <label for="email">Email </label>
+                <input type="text" name="email" placeholder="Email" id="email">
+            </div>
+            <div class="input-field">
+                <label for="password">Password</label>
+                <input type="password" placeholder="Password" name="password" id="password">
+            </div>
+            <div class="input-field">
+                <label for="cpass">Confirm Password</label>
+                <input type="password" placeholder="Confirm Password" name="cpass" id="cpassword">
+            </div>
+
+        </div>
+        <button type="submit">Register</button>
+        </form>
+    <script src="/javascripts/register.js"></script>
+
+</body>
+
+</html>

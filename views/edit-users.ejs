@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/nav-bar_manage.css">
+    <link rel="stylesheet" href="/stylesheets/edit-users.css">
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="nav-bar">
+            <ul>
+                <a href="/chat">
+                    <li>Group Chat</li>
+                </a>
+                <a href="#">
+                    <li class="active">Manage Users</li>
+                </a>
+                <a href="/docslist">
+                    <li>Manage Documents</li>
+                </a>
+                <a href="logout">
+                    <li>Logout</li>
+                </a>
+
+            </ul>
+        </div>
+
+        <div class="content">
+            <h2>Edit User Information</h2>
+            <form method="post">
+              
+
+                <div>
+                    <label for="full-name">Full Name</label>
+                    <input type="text" name="name" id="fullName" value=" <%= user.name %>">
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" value=" <%= user.email %>">
+                </div>
+                <input type="submit" value="Save" class="saveBtn">
+                
+            </form>
+        </div>
+    </div>
+
+
+    <script src="/javascripts/edit-users.js"></script>
+    <script src="/javascripts/logout.js"></script>
+    <script src="/javascripts/authentication.js"></script>
+
+</body>
+
+</html>

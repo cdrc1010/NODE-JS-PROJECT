@@ -1,0 +1,9 @@
+body {
+    font-family: Helvetica, sans-serif;
+}
+
+.content {
+    text-align: center;
+    margin-top: 5rem;
+    line-height: 2rem;
+}

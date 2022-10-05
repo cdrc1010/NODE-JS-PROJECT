@@ -1,0 +1,81 @@
+body {
+    font-family: Helvetica, sans-serif;
+}
+
+.upper-header {
+    text-align: center;
+    margin-top: 2rem;
+    line-height: 3rem;
+}
+
+.upper-header ul {
+    list-style-type: none;
+    width: 100%;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+
+}
+
+.upper-header ul li {
+    display: inline-block;
+}
+
+.upper-header ul li:nth-child(2) {
+    float: right;
+    font-size: 15px;
+    margin-right: 10px;
+    width: 30px;
+    margin-top: 2px;
+    line-height: 38px;
+    border: 2px solid black;
+    cursor: pointer;
+    transition: transform .8s;
+}
+
+.upper-header ul li:nth-child(2):hover {
+    transform: rotate(360deg);
+    border-radius: 10px;
+}
+
+.messages {
+    height: 50vh;
+    padding: 20px 5px;
+    border-bottom: 1px solid black;
+    overflow:scroll;
+}
+
+.messages::-webkit-scrollbar{
+    display:none;
+}
+
+.messages p {
+    line-height: 1.5rem;
+}
+
+.user-row {
+    text-align: center;
+    padding: 5px 0;
+    font-weight: 600;
+    border-bottom: 1px solid black;
+}
+
+
+.txt-send {
+    display: inline;
+}
+
+input[type=text] {
+    width: 70%;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 4px;
+    margin: 0 5px;
+}
+
+input[type=submit],
+button {
+    padding: 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/nav-bar_manage.css">
+    <link rel="stylesheet" href="/stylesheets/user-list.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav-bar">
+            <ul>
+                <a href="chat">
+                    <li>Group Chat</li>
+                </a>
+                <a href="#">
+                    <li class="active">Manage Users</li>
+                </a>
+                <a href="docslist">
+                    <li>Manage Documents</li>
+                </a>
+                <a href="logout">
+                    <li>Logout</li>
+                </a>
+
+            </ul>
+        </div>
+
+        <div class="content">
+
+            <!-- modal -->
+            <div class="overlay" id="overlay" hidden>
+                <div class="confirm-box">
+                    <input type="hidden" id="hiddenUserId">
+                    <div onclick="closeConfirmBox()" class="close">&#10006;</div>
+                    <h5>Confirm User Deletion</h5>
+                    <hr>
+                    <p><span> <img src="/images/icons8-question-mark-64.png" height="45px"></span> Are you sure?</p>
+                    <div class="confirmBtn">
+                        <button class="deleteBtn">Yes</button>
+                        <button onclick="isConfirm(false)">No</button>
+                    </div>
+                </div>
+            </div>
+            <!-- modal -->
+
+            <h2>Users</h2>
+            <div class="table_design">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>User Email ID</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                        <tbody id="tContent">
+                            <%usersList.forEach(users=> {%>
+
+                                <% let idfromToken=user._id%>
+                                    <% let idfromTable=users._id%>
+                                            <tr>
+                                                <td>
+                                                    <%= users.name %>
+                                                </td>
+                                                <td>
+                                                    <%= users.email %>
+                                                </td>
+
+                                                <td><a href="edit-users/<%= users._id %>"><button>Edit</button></a>
+                                                    <% if(!(idfromToken.equals(idfromTable))) {%>|
+                                                        <button onclick="showConfirmBox(`<%= users._id %>`)">Delete
+                                                        </button>
+                                                        <% }%>
+
+                                                </td>
+                                            </tr>
+
+                                            <%})%>
+
+
+
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="/javascripts/user-list.js"></script>
+
+
+
+
+
+</body>
+
+</html>

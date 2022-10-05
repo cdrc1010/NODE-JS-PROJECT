@@ -1,0 +1,34 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Helvetica, sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+ul li {
+    display: inline-block;
+    width: 24%;
+    padding: 10px 0;
+    background: lightgrey;
+    text-align: center;
+    border: 2px solid black;
+    margin-left: -6px;
+}
+
+ul a {
+    text-decoration: none;
+    color: black;
+}
+
+.content {
+    text-align: center;
+    margin-top: 2rem;
+    line-height: 3rem;
+}

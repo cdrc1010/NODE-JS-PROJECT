@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/nav-bar_manage.css">
+    <link rel="stylesheet" href="/stylesheets/share.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- modal -->
+        <div class="overlay" id="overlay" hidden>
+            <div class="confirm-box">
+                <div onclick="closeConfirmBox()" class="close">&#10006;</div>
+                <h5>Confirm From Web Page</h5>
+                <hr>
+                <p><span> <img src="/images/icons8-question-mark-64.png" height="45px"></span> Are you sure?</p>
+                <div class="confirmBtn">
+                    <button class="deleteBtn">Yes</button>
+                    <button onclick="isConfirm()">No</button>
+                </div>
+            </div>
+        </div>
+        <!-- modal -->
+
+        <div class="nav-bar">
+            <ul>
+                <a href="/chat">
+                    <li>Group Chat</li>
+                </a>
+                <a href="/user-list">
+                    <li>Manage Users</li>
+                </a>
+                <a href="#">
+                    <li class="active">Manage Documents</li>
+                </a>
+                <a href="/logout">
+                    <li>Logout</li>
+                </a>
+
+            </ul>
+        </div>
+
+        <h1>Upload Sharing :</h1> <span id="fileName">
+            <%= upload.fileName%>
+        </span>
+
+        <div class="content1">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Shared User</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!-- <tr>
+                        <td>Sales Report</td>
+                        <td><button onclick="showRemoveBox()">Remove</button> </td>
+                    </tr>
+
+                    <tr>
+                        <td>Sales Report</td>
+                        <td><button onclick="showRemoveBox()">Remove</button> </td>
+                    </tr>
+
+                    <tr>
+                        <td>Sales Report</td>
+                        <td><button onclick="showRemoveBox()">Remove</button> </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+
+                    </tr> -->
+                    
+                    <%let shared=upload.sharedTo%>
+
+                        <%shared.forEach((result)=>{%>
+                            <tr>
+                                <td>
+                                    <%= result.receiverName%>
+
+                                </td>
+
+                                <td><button onclick="showDeleteBox(`<%=upload._id%>`,`<%= result._id%>`)">Remove</button> </td>
+                            </tr>
+                            <%})%>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="content2">
+            <h1>Add Sharing</h1>
+            <div class="user-row">
+                <form method="post" id="myForm">
+                    <label>Choose User: </label>
+                    <input type="text" name="myfile" value="<%= upload.fileName%>" hidden>
+                    <input type="text" name="myLabel" value="<%= upload.fileDescription%>" hidden>
+
+                    <select id="users" name="receiver">
+                        <option selected="true" disabled="disabled">Select Users</option>
+                        <%myUsers.forEach( (myusers)=> {%>
+                            <%let testing = upload.sharedTo%>
+                            
+                              
+                                <%let a=user.id%>
+                                <%let b=myusers._id%>
+                                    
+                                        <% if (a !=b) {%>
+                                            <option value=" <%=myusers.name%>"><%=myusers.name%></option>
+                                        <%}%>
+                                    
+                                
+                        <%})%>
+
+                                            
+                    </select>
+                    <button id="shareBtn" type="submit">Add Share</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="/javascripts/share.js"></script>
+
+
+</body>
+
+</html>

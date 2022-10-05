@@ -1,0 +1,38 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.nav-bar {
+    margin-top: 1px;
+}
+
+.nav-bar ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+.nav-bar ul li {
+    display: inline-block;
+    width: 24%;
+    padding: 10px 0;
+    background: lightgrey;
+    text-align: center;
+    border: 2px solid black;
+    margin-left: -6px;
+    transition: .5s;
+}
+
+.nav-bar ul a {
+    text-decoration: none;
+    color: black;
+}
+
+
+.nav-bar .active {
+    background: white;
+}
+
+ul li:hover {
+    background: white;
+}
